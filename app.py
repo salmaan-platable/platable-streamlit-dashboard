@@ -356,7 +356,7 @@ if not ru_base.empty:
                  .rename("cnt").reset_index())
         fav = fav.sort_values(["user_key","cnt"], ascending=[True, False])
         top3 = (fav.groupby("user_key")
-                    .apply(lambda g: ", ".join([f"{n} ({int(c))}" for n, c in zip(g[item_col].head(3), g["cnt"].head(3))])))
+                    .apply(lambda g: ", ".join([f"{n} ({int(c)})" for n, c in zip(g[item_col].head(3), g["cnt"].head(3))])))
         top3 = top3.reset_index().rename(columns={0:"Top Items"})
     else:
         top3 = pd.DataFrame({"user_key": agg["user_key"], "Top Items": "N/A"})
